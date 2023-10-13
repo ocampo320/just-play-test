@@ -49,7 +49,10 @@ dependencies:
   intl: ^0.18.0
   google_fonts: ^4.0.3
   freezed_annotation: ^2.4.1
-  
+  firebase_core: ^2.15.1
+  cloud_firestore: ^4.9.1
+  firebase_remote_config: ^4.2.5
+  firebase_analytics: ^10.5.1
 
 dev_dependencies:
   flutter_test:

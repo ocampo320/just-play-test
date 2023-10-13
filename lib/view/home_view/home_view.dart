@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:just_play_test/bloc/home_bloc.dart';
 import 'package:just_play_test/bloc/home_event.dart';
 import 'package:just_play_test/constans/color_manager.dart';
+import 'package:just_play_test/core/constants/constans.dart';
 import 'package:just_play_test/view/home_view/save_page.dart';
-import 'package:just_play_test/view/login_view/app_typography.dart';
+import 'package:just_play_test/view/utils/app_typography.dart';
 import 'package:just_play_test/view/widgets/card_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,7 +27,6 @@ class _HomePageState extends State<HomePage> {
           HomeStarted(),
         );
     return Scaffold(
-     
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorManager.comentary03_900,
         onPressed: () => Navigator.push(
@@ -36,16 +36,19 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.add),
       ),
       appBar: AppBar(
-        title:  Text('Agenda de canchas',style:  AppTypography.stRaleway(
-          color: ColorManager.comentary03_900,
-          fontSize: 22,
-          fontWeight: FontWeight.bold),),
+        title: Text(
+          Constants.scheduleCourts,
+          style: AppTypography.stRaleway(
+              color: ColorManager.comentary03_900,
+              fontSize: 22,
+              fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         backgroundColor: ColorManager.neutral800,
       ),
-      body:  SafeArea(
+      body: SafeArea(
           child: Scaffold(
-            backgroundColor:   ColorManager.neutral800,
+        backgroundColor: ColorManager.neutral800,
         body: const SingleChildScrollView(
           child: CardWidget(),
         ),

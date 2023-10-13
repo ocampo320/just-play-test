@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:just_play_test/constans/color_manager.dart';
-import 'package:just_play_test/view/login_view/app_typography.dart';
+import 'package:just_play_test/view/utils/app_typography.dart';
 
 class ButtonJustPlay extends StatelessWidget {
   const ButtonJustPlay(

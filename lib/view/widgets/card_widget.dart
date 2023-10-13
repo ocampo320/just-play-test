@@ -6,10 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_play_test/constans/color_manager.dart';
 import 'package:just_play_test/models/court.dart';
 import 'package:just_play_test/services/weather_map_services.dart';
-import 'package:just_play_test/view/login_view/app_typography.dart';
 import 'package:just_play_test/view/widgets/text_card.dart';
 
-import 'button_just_play.dart';
 
 class CardWidget extends StatefulWidget {
   const CardWidget({super.key, this.nameCourt, this.date, this.userName});
@@ -145,7 +143,7 @@ class _CardWidgetState extends State<CardWidget> {
 showAlertDialog(BuildContext context, Court e) {
   // set up the button
   Widget okButton = TextButton(
-    child: Text("OK"),
+    child: const Text("OK"),
     onPressed: () {
       context.read<HomeBloc>().add(
             DeleteStarted(e),
@@ -156,8 +154,8 @@ showAlertDialog(BuildContext context, Court e) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Alerta"),
-    content: Text("Esta seguro de  borrar el agendamiento."),
+    title: const Text("Alerta"),
+    content: const Text("Esta seguro de  borrar el agendamiento."),
     actions: [
       okButton,
     ],

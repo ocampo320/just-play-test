@@ -72,8 +72,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         if(r.isEmpty){
            isDateAvailable = true;
         }else{
-            r.forEach(
-          (court) {
+            for (var court in r) {
             if (court.court == nameCourt && court.date == date) {
               if (court.count != null) {
                 if (court.count! >= 2) {
@@ -85,8 +84,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             }else{
                isDateAvailable = true;
             }
-          },
-        );
+          }
         }
       
       },
@@ -99,8 +97,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     coutn = 0;
     courts.forEach(
       (r) {
-        r.forEach(
-          (element) {
+        for (var element in r) {
             if (element.court == nameCourt) {
               if (element.count == null) {
                 element.count = 1;
@@ -108,8 +105,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 coutn = element.count! + 1;
               }
             }
-          },
-        );
+          }
       },
     );
     return coutn;

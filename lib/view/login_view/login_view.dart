@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:just_play_test/constans/color_manager.dart';
+import 'package:just_play_test/core/constants/constans.dart';
+import 'package:just_play_test/services/login_services.dart';
 import 'package:just_play_test/view/home_view/home_view.dart';
 import 'package:just_play_test/view/widgets/button_just_play.dart';
 import 'package:just_play_test/view/widgets/input_just_play.dart';
@@ -9,14 +11,16 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController t = TextEditingController();
+    TextEditingController user = TextEditingController();
+    TextEditingController password = TextEditingController();
     return MaterialApp(
+    
       home: Scaffold(
         body: SingleChildScrollView(
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/fondo.webp'),
+                image: AssetImage(Constants.mainImage),
                 fit: BoxFit.fitHeight,
               ),
             ),
@@ -44,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                           width: 100,
                           height: 100,
                           child: Image.asset(
-                            'assets/icon.webp',
+                            Constants.iconImage,
                             color: ColorManager.primary100,
                           ),
                         ),
@@ -52,15 +56,15 @@ class LoginScreen extends StatelessWidget {
                           height: 40,
                         ),
                         InputJustPlay(
-                          placeHolder: "Name",
-                          controller: t,
+                          placeHolder: Constants.name,
+                          controller: user,
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         InputJustPlay(
-                          controller: t,
-                          placeHolder: "Password",
+                          controller: password,
+                          placeHolder: Constants.password,
                         ),
                         const SizedBox(
                           height: 70,
@@ -69,14 +73,24 @@ class LoginScreen extends StatelessWidget {
                           colorText: ColorManager.neutralWhite,
                           height: 45,
                           width: 180,
-                          title: "Log in",
+                          title: Constants.logIn,
                           color: ColorManager.comentary03_900,
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const HomePage()),
-                            );
+                            AuthServices.login(
+                                    user.value.text, password.value.text)
+                                .then((value) {
+                              if (value) {
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomePage(),
+                                  ),
+                                  (Route<dynamic> route) => false,
+                                );
+                              }else{
+                                Text(Constants.errorConnecting);
+                              }
+                            });
                           },
                           fontSize: 20,
                         ),

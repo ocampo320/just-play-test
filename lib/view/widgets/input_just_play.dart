@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:just_play_test/constans/color_manager.dart';
-import 'package:just_play_test/view/login_view/app_typography.dart';
+import 'package:just_play_test/view/utils/app_typography.dart';
 
 class InputJustPlay extends StatelessWidget {
   const InputJustPlay({
@@ -45,20 +45,20 @@ class InputJustPlay extends StatelessWidget {
             decoration: InputDecoration(
               fillColor: Colors.transparent,
               filled: true,
-              contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 12), // Añade padding a la izquierda
+              contentPadding: const EdgeInsets.fromLTRB(12, 12, 0, 12), // Añade padding a la izquierda
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   color: ColorManager.neutralWhite,
                   width: 1,
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(25)),
+                borderRadius: const BorderRadius.all(Radius.circular(25)),
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   color: ColorManager.comentary03_900,
                   width: 1,
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(25)),
+                borderRadius: const BorderRadius.all(Radius.circular(25)),
               ),
               hintStyle: AppTypography.stRaleway(
                 color: ColorManager.neutralWhite,

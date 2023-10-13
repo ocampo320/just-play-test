@@ -6,8 +6,9 @@ import 'package:just_play_test/bloc/home_bloc.dart';
 import 'package:just_play_test/bloc/home_event.dart';
 import 'package:just_play_test/bloc/home_state.dart';
 import 'package:just_play_test/constans/color_manager.dart';
+import 'package:just_play_test/core/constants/constans.dart';
 import 'package:just_play_test/models/court.dart';
-import 'package:just_play_test/view/login_view/app_typography.dart';
+import 'package:just_play_test/view/utils/app_typography.dart';
 import 'package:just_play_test/view/widgets/button_just_play.dart';
 
 import '../widgets/input_just_play.dart';
@@ -25,19 +26,21 @@ class SavePage extends StatelessWidget {
         backgroundColor: ColorManager.neutral800,
         centerTitle: true,
         title: Text(
-          'Agendar Cancha',
+          Constants.scheduleCourts,
           style: AppTypography.stRaleway(
               color: ColorManager.comentary03_900,
               fontSize: 22,
               fontWeight: FontWeight.bold),
         ),
       ),
-      body: SaveForm(),
+      body: const SaveForm(),
     );
   }
 }
 
 class SaveForm extends StatefulWidget {
+  const SaveForm({super.key});
+
   @override
   _SaveFormState createState() => _SaveFormState();
 }
@@ -70,7 +73,7 @@ class _SaveFormState extends State<SaveForm> {
                     });
                   },
                   controller: userInput,
-                  placeHolder: 'Nombre del responsable',
+                  placeHolder:Constants.nameResponsible,
                 ),
                 const SizedBox(
                   height: 20,
@@ -102,7 +105,7 @@ class _SaveFormState extends State<SaveForm> {
                         });
                       },
                       hint: Text(
-                        'Selecciona cancha',
+                        Constants.selectCourt,
                         style: AppTypography.stRaleway(
                             color: ColorManager.neutralWhite,
                             fontSize: 16,
@@ -165,7 +168,7 @@ class _SaveFormState extends State<SaveForm> {
                         controller: dateInput,
                         //editing controller of this TextField
                         decoration: InputDecoration(
-                          hintText: 'Fecha',
+                          hintText: Constants.date,
                           suffixIcon: Icon(
                             Icons.calendar_today,
                             color: ColorManager
@@ -237,7 +240,7 @@ class _SaveFormState extends State<SaveForm> {
                           }
                         }
                       : () {},
-                  title: 'Guardar',
+                  title: Constants.schedule,
                  
                 ),
               ],
@@ -256,7 +259,7 @@ class _SaveFormState extends State<SaveForm> {
       isActive = false;
     } else {
       isActive = true;
-      ;
+      
     }
     return isActive;
   }
@@ -265,7 +268,7 @@ class _SaveFormState extends State<SaveForm> {
 showAlertDialog(BuildContext context) {
   // set up the button
   Widget okButton = TextButton(
-    child: Text("OK"),
+    child:const Text(Constants.ok),
     onPressed: () {
       Navigator.pop(context);
     },
@@ -273,8 +276,8 @@ showAlertDialog(BuildContext context) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Error"),
-    content: Text("Esta cancha ya no tiene cupo por hoy"),
+    title: const Text(Constants.error),
+    content:const Text(Constants.courtNoLonger),
     actions: [
       okButton,
     ],

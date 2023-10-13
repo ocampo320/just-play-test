@@ -38,29 +38,33 @@ class InputJustPlay extends StatelessWidget {
             keyboardType: keyboard ?? TextInputType.text,
             textAlignVertical: TextAlignVertical.center,
             style: AppTypography.stRaleway(
-                color: ColorManager.neutralWhite,
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
+              color: ColorManager.neutralWhite,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
             decoration: InputDecoration(
               fillColor: Colors.transparent,
               filled: true,
-              contentPadding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
+              contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 12), // Añade padding a la izquierda
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: ColorManager.neutralWhite,
-                    width: 1,
-                  ),
-                  borderRadius: const BorderRadius.all(Radius.circular(25))),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: ColorManager.comentary03_900,
-                    width: 1,
-                  ),
-                  borderRadius: const BorderRadius.all(Radius.circular(25))),
-              hintStyle: AppTypography.stRaleway(
+                borderSide: BorderSide(
                   color: ColorManager.neutralWhite,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold),
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(25)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: ColorManager.comentary03_900,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(25)),
+              ),
+              hintStyle: AppTypography.stRaleway(
+                color: ColorManager.neutralWhite,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
               hintText: placeHolder,
             ),
           ),
@@ -77,12 +81,14 @@ class InputJustPlay extends StatelessWidget {
                           width: 5,
                         ),
                         Flexible(
-                          child: Text(validationText!,
-                              style: AppTypography.stRaleway(
-                                  color: ColorManager
-                                      .gradientsColorsPrimary011Opa100,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold)),
+                          child: Text(
+                            validationText!,
+                            style: AppTypography.stRaleway(
+                              color: ColorManager.gradientsColorsPrimary011Opa100,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ],
                     ),

@@ -90,15 +90,7 @@ class _SaveFormState extends State<SaveForm> {
                       focusColor: ColorManager.primary100,
                       borderRadius: const BorderRadius.all(Radius.circular(7)),
                       dropdownColor: ColorManager.comentary01_800,
-                      decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.white,
-                          ), // Cambia el color y ancho del borde a blanco
-                          borderRadius: BorderRadius.circular(
-                              40), // Cambia el radio del borde
-                        ),
-                      ),
+                      
                       onTap: () {
                         setState(() {
                           validateButtom();
@@ -174,13 +166,7 @@ class _SaveFormState extends State<SaveForm> {
                             color: ColorManager
                                 .neutralWhite, // Cambia el color del icono de fecha a blanco
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                            ), // Cambia el color y ancho del borde a blanco
-                            borderRadius: BorderRadius.circular(
-                                24), // Cambia el radio del borde
-                          ),
+                          
                         ),
                         readOnly: true,
                         //set it true, so that user will not able to edit text
@@ -217,12 +203,11 @@ class _SaveFormState extends State<SaveForm> {
                   fontSize: 16,
                   height: 50,
                    width: double.infinity,
-                  onTap: validateButtom() == false
+                  onTap: validateButtom() == true
                       ? () async {
                           var coutn = await context
                               .read<HomeBloc>()
                               .getCountAndSum(courtInput.text);
-
                           var vaialblecourt = await context
                               .read<HomeBloc>()
                               .isCourtAvailable(

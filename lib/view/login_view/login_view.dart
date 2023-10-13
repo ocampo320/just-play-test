@@ -4,17 +4,22 @@ import 'package:just_play_test/core/constants/constans.dart';
 import 'package:just_play_test/services/login_services.dart';
 import 'package:just_play_test/view/home_view/home_view.dart';
 import 'package:just_play_test/view/widgets/button_just_play.dart';
+import 'package:just_play_test/view/widgets/card_widget.dart';
 import 'package:just_play_test/view/widgets/input_just_play.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     TextEditingController user = TextEditingController();
     TextEditingController password = TextEditingController();
     return MaterialApp(
-    
       home: Scaffold(
         body: SingleChildScrollView(
           child: Container(
@@ -63,6 +68,7 @@ class LoginScreen extends StatelessWidget {
                           height: 20,
                         ),
                         InputJustPlay(
+                          isPassword: true,
                           controller: password,
                           placeHolder: Constants.password,
                         ),
@@ -88,7 +94,7 @@ class LoginScreen extends StatelessWidget {
                                   (Route<dynamic> route) => false,
                                 );
                               }else{
-                                Text(Constants.errorConnecting);
+                                showAlertDialog(Constants.loginError);
                               }
                             });
                           },
@@ -105,4 +111,23 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
+  showAlertDialog(String message) {
+
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: const Center(child: Text(Constants.attention)),
+    content:  Text(message),
+    
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
 }

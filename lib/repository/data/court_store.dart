@@ -38,7 +38,7 @@ class CourtStore {
       final snapshot = await _store.find(await _db);
       debugPrint(
           "--------Consulta en la BD local----------" + snapshot.toString());
-      return right(snapshot.map((e) => Court.fromJson(e.value)).toList());
+      return right(snapshot.map((e) => Court.fromJson(e.value)).toList()??[Court()]);
     } catch (e) {
       return left(CommonFailure.data(message: e.toString()));
     }

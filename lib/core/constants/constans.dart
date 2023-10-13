@@ -16,5 +16,8 @@ class Constants {
         static const ok="Ok";
         static const error="Error";
         static const courtNoLonger="This court no longer has space for today";
+        static const loginError="Failed to log in, please validate your credentials";
+        static const attention="Attention";
+        static const areYouSure="Are you sure you want to delete the schedule?";
 
 }

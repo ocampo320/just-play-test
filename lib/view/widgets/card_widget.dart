@@ -4,10 +4,12 @@ import 'package:just_play_test/bloc/home_event.dart';
 import 'package:just_play_test/bloc/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_play_test/constans/color_manager.dart';
+import 'package:just_play_test/core/constants/constans.dart';
 import 'package:just_play_test/models/court.dart';
 import 'package:just_play_test/services/weather_map_services.dart';
+import 'package:just_play_test/view/home_view/home_view.dart';
+import 'package:just_play_test/view/utils/app_typography.dart';
 import 'package:just_play_test/view/widgets/text_card.dart';
-
 
 class CardWidget extends StatefulWidget {
   const CardWidget({super.key, this.nameCourt, this.date, this.userName});
@@ -33,7 +35,15 @@ class _CardWidgetState extends State<CardWidget> {
       builder: (context, state) {
         return state.when(
             save: (b) => const SizedBox(),
-            initial: () => const SizedBox(child: Center(child: Text('data'))),
+            initial: () => SizedBox(
+                    child: Center(
+                        child: Text(
+                  'Agrege algo ',
+                  style: AppTypography.stRaleway(
+                      color: ColorManager.neutralWhite,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ))),
             loading: () => const CircularProgressIndicator(),
             data: (data) => Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15, top: 25),
@@ -58,7 +68,8 @@ class _CardWidgetState extends State<CardWidget> {
                                       onPressed: () =>
                                           showAlertDialog(context, e),
                                       icon: CircleAvatar(
-                                        backgroundColor:ColorManager.neutral600 ,
+                                        backgroundColor:
+                                            ColorManager.neutral600,
                                         child: Icon(
                                           Icons.delete,
                                           color: ColorManager.comentary03_900,
@@ -84,13 +95,17 @@ class _CardWidgetState extends State<CardWidget> {
                                                         size: 25,
                                                       ),
                                                     ),
-                                                    TextCard(
-                                                      text: snapshot.data
-                                                          .toString(),
+                                                    Expanded(
+                                                      child: TextCard(
+                                                        text: snapshot.data
+                                                            .toString(),
+                                                      ),
                                                     ),
                                                   ],
                                                 )
-                                              : const SizedBox();
+                                              : Center(
+                                                child: const CircularProgressIndicator(),
+                                              );
                                         }),
                                     leading: Icon(
                                       color: ColorManager.neutral600,
@@ -139,23 +154,27 @@ class _CardWidgetState extends State<CardWidget> {
     );
   }
 }
-
 showAlertDialog(BuildContext context, Court e) {
   // set up the button
   Widget okButton = TextButton(
-    child: const Text("OK"),
+    child: const Text(Constants.ok),
     onPressed: () {
-      context.read<HomeBloc>().add(
-            DeleteStarted(e),
-          );
-      Navigator.pop(context);
+      context.read<HomeBloc>().add(DeleteStarted(e));
+      Navigator.of(context).pop(); // Cierra el AlertDialog
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+        (Route<dynamic> route) => false,
+      );
     },
   );
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: const Text("Alerta"),
-    content: const Text("Esta seguro de  borrar el agendamiento."),
+    title: const Text(Constants.attention),
+    content: const Text(Constants.areYouSure),
     actions: [
       okButton,
     ],
@@ -169,3 +188,4 @@ showAlertDialog(BuildContext context, Court e) {
     },
   );
 }
+
